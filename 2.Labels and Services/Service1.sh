@@ -48,3 +48,11 @@ kubectl describe service backend-prod
 
 
 
+# Cleanup
+kubectl delete deployment backend-prod
+kubectl delete deployment cyberschool-prod
+kubectl delete service backend-prod
+kubectl delete service cyberschool-prod
+
+
+

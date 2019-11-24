@@ -1,3 +1,5 @@
 *.pptx
 *.pdf
 hosts
+*.crt
+*.key

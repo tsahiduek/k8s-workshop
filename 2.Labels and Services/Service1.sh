@@ -21,7 +21,7 @@ ALPACA_POD=$(kubectl get pods -l app=backend \
 
 kubectl port-forward $ALPACA_POD 48858:8080
 
-show DSN
+#show DNS in KUARD UI
 
 KUBE_EDITOR="nano" kubectl edit deployment/backend-prod
 
@@ -40,7 +40,7 @@ ALPACA_POD=$(kubectl get pods -l app=backend \
 
 kubectl port-forward $ALPACA_POD 48858:8080
 
-kubectl get endpoints alpaca-prod --watch
+kubectl get endpoints backend-prod --watch
 
 kubectl edit service backend-prod
 

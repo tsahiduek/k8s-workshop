@@ -1,0 +1,59 @@
+kubectl run nginx --image=nginx:1.7.12
+
+kubectl get deployments nginx
+
+
+kubectl get deployments nginx \
+-o jsonpath --template {.spec.selector.matchLabels}
+
+
+kubectl get replicasets --selector=run=nginx
+
+
+kubectl scale deployments nginx --replicas=2
+
+kubectl get replicasets --selector=run=nginx
+
+kubectl scale replicasets <rsid> --replicas=1
+
+kubectl get replicasets --selector=run=nginx
+
+kubectl get deployments nginx --export -o yaml > nginx-deployment.yaml
+kubectl replace -f nginx-deployment.yaml --save-config
+
+update replicas: 3
+
+kubectl apply -f nginx-deployment.yaml
+
+kubectl get deployments nginx
+
+update
+image: nginx:1.9.10
+template:
+annotations:
+kubernetes.io/change-cause: "Update nginx to 1.9.10"
+
+kubectl apply -f nginx-deployment.yaml
+
+kubectl rollout status deployments nginx
+
+kubectl get replicasets -o wide
+
+kubectl rollout pause deployments nginx
+
+kubectl rollout resume deployments nginx
+
+kubectl rollout history deployment nginx
+
+kubectl rollout history deployment nginx --revision=2
+kubectl rollout history deployment nginx
+
+kubectl rollout undo deployments nginx
+
+kubectl get replicasets -o wide
+
+kubectl rollout history deployment nginx
+
+kubectl rollout undo deployments nginx --to-revision=3
+
+kubectl rollout history deployment nginx

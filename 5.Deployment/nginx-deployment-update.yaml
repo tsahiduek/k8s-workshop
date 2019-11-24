@@ -26,7 +26,7 @@ spec:
         run: nginx
     spec:
       containers:
-        - image: nginx:1.7.13
+        - image: nginx:1.17.6
           imagePullPolicy: IfNotPresent
           name: nginx
           resources:

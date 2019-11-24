@@ -4,7 +4,7 @@ kubectl run backend-prod \
 --port=8080 \
 --labels="ver=1,app=backend,env=prod"
 
-kubectl expose deployment backend-prod
+kubectl expose deployment backend-prod --type=LoadBalancer
 
 kubectl run cyberschool-prod \
 --image=gcr.io/kuar-demo/kuard-amd64:2 \
@@ -12,7 +12,7 @@ kubectl run cyberschool-prod \
 --port=8080 \
 --labels="ver=2,app=cyberschool,env=prod"
 
-kubectl expose deployment cyberschool-prod
+kubectl expose deployment cyberschool-prod --type=LoadBalancer
 
 kubectl get services -o wide
 
@@ -25,14 +25,14 @@ show DSN
 
 KUBE_EDITOR="nano" kubectl edit deployment/backend-prod
 
-        readinessProbe:
-          httpGet:
-            path: /ready
-            port: 8080
-          periodSeconds: 2
-          initialDelaySeconds: 0
-          failureThreshold: 3
-          successThreshold: 1
+readinessProbe:
+httpGet:
+path: /ready
+port: 8080
+periodSeconds: 2
+initialDelaySeconds: 0
+failureThreshold: 3
+successThreshold: 1
 
 
 ALPACA_POD=$(kubectl get pods -l app=backend \
